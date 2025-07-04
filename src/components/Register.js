@@ -5,6 +5,9 @@ function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [msg, setMsg] = useState("");
 
+  // ✅ Use environment variable for base URL
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -12,7 +15,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", form);
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, form);
       setMsg(res.data.message);
     } catch (err) {
       setMsg(err.response?.data?.message || "Registration failed");

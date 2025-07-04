@@ -5,6 +5,9 @@ function AddProduct() {
   const [form, setForm] = useState({ name: "", price: "", description: "", image: "" });
   const [msg, setMsg] = useState("");
 
+  // ✅ Read API base URL from environment variable
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -12,7 +15,7 @@ function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/products/add", form);
+      await axios.post(`${API_BASE_URL}/api/products/add`, form);
       setMsg("Product added successfully");
       setForm({ name: "", price: "", description: "", image: "" });
     } catch (err) {

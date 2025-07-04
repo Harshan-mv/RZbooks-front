@@ -4,32 +4,59 @@ import axios from "axios";
 function ProductList() {
   const [products, setProducts] = useState([]);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/products/all")
-      .then(res => setProducts(res.data))
-      .catch(err => console.log("Error fetching products"));
-  }, []);
+    axios.get(`${API_BASE_URL}/api/products/all`)
+      .then(res => {
+        if (res.data.success) {
+          setProducts(res.data.data); // ✅ Extract only the array
+        } else {
+          setProducts([]);
+          console.error("API Error:", res.data.message);
+        }
+      })
+      .catch(err => {
+        console.log("Error fetching products");
+        setProducts([]);
+      });
+  }, [API_BASE_URL]);
+  
 
   const loadRazorpay = async (product) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/payment/create-order", {
+      const res = await axios.post(`${API_BASE_URL}/api/payment/create-order`, {
         amount: product.price
       });
 
       const { id: order_id, amount, currency } = res.data;
 
       const options = {
-        key: "rzp_test_d1JOhyRPpYIB5o", // replace with your Razorpay Key ID
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID, // ⛳ Use from .env
         amount,
         currency,
         name: "RazorPay Demo Store",
         description: product.name,
         order_id,
-        handler: function (response) {
-          alert("Payment Successful!");
-          console.log("Payment ID:", response.razorpay_payment_id);
-          console.log("Order ID:", response.razorpay_order_id);
-          console.log("Signature:", response.razorpay_signature);
+        handler: async function (response) {
+          // ✅ Verify payment on backend
+          try {
+            const verifyRes = await axios.post(`${API_BASE_URL}/api/payment/verify`, {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature
+            });
+
+            if (verifyRes.data.success) {
+              alert("🎉 Payment Verified Successfully!");
+              console.log("Server verified signature.");
+            } else {
+              alert("❌ Payment Verification Failed.");
+            }
+          } catch (err) {
+            console.error("Verification Error:", err);
+            alert("❌ Verification request failed.");
+          }
         },
         prefill: {
           name: "Test User",
