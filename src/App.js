@@ -9,11 +9,11 @@ function App() {
   return (
     <BrowserRouter>
       <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <h1>Welcome to Razorpay E-Commerce</h1>
+        <h1>Welcome to Ebooks Store</h1>
         <nav style={{ marginBottom: "30px" }}>
           <Link to="/register" style={{ marginRight: "20px" }}>Register</Link>
           <Link to="/login">Login</Link>
-          <Link to="/add-product">Add Product</Link>
+          {/* <Link to="/add-product">Add Product</Link> */}
         </nav>
         <Routes>
           <Route path="/register" element={<Register />} />
