@@ -1,0 +1,211 @@
+/* LoginNavbar Styles */
+.login-navbar {
+  background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0;
+}
+
+.login-navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.login-navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.login-navbar-logo {
+  text-decoration: none;
+  color: white;
+}
+
+.login-navbar-logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(67, 206, 162, 0.15);
+}
+
+.login-navbar-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.login-nav-link {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.login-nav-link:hover {
+  color: #43cea2;
+  background-color: rgba(67, 206, 162, 0.1);
+  transform: translateY(-2px);
+}
+
+.login-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #43cea2;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.login-nav-link:hover::after {
+  width: 80%;
+}
+
+.login-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-welcome {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-message {
+  color: #ecf0f1;
+  font-weight: 500;
+  font-size: 0.95rem;
+  background: rgba(67, 206, 162, 0.2);
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(67, 206, 162, 0.3);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-add-product {
+  background: #185a9d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-add-product:hover {
+  background: #43cea2;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(67, 206, 162, 0.3);
+}
+
+.btn-logout {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-navbar-container {
+    padding: 0 15px;
+    height: 60px;
+  }
+  
+  .login-navbar-logo h1 {
+    font-size: 1.5rem;
+  }
+  
+  .login-navbar-menu {
+    gap: 15px;
+  }
+  
+  .login-nav-link {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+  
+  .welcome-message {
+    display: none;
+  }
+  
+  .action-buttons {
+    gap: 8px;
+  }
+  
+  .btn-add-product,
+  .btn-logout {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-navbar-menu {
+    gap: 10px;
+  }
+  
+  .login-nav-link {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+  
+  .login-navbar-logo h1 {
+    font-size: 1.3rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .btn-add-product,
+  .btn-logout {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+} 
