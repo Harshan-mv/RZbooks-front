@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import './Home.css';
-
+import { CDN_IMAGES } from "../assets/cdn";
 const Home = () => {
   // Farm product showcase images (royalty-free placeholder URLs)
   const farmProducts = [
-    { name: 'Fresh Tomatoes', image: '/images/tomato.png' },
-    { name: 'Organic Carrots', image: '/images/carrot.png' },
-    { name: 'Leafy Spinach', image: '/images/Spinach.png' },
-    { name: 'Juicy Oranges', image: '/images/Orange.png' },
-    { name: 'Red Apples', image: '/images/Apple.png' },
-    { name: 'Golden Wheat', image: '/images/Wheat.png' },
-    { name: 'Fresh Corn', image: '/images/Corn.png' },
-    { name: 'Fresh Dates', image: '/images/dates.png' },
-  ];
+  { name: 'Fresh Tomatoes', image: CDN_IMAGES.tomato },
+  { name: 'Organic Carrots', image: CDN_IMAGES.carrot },
+  { name: 'Leafy Spinach', image: CDN_IMAGES.spinach },
+  { name: 'Juicy Oranges', image: CDN_IMAGES.orange },
+  { name: 'Red Apples', image: CDN_IMAGES.apple },
+  { name: 'Golden Wheat', image: CDN_IMAGES.wheat },
+  { name: 'Fresh Corn', image: CDN_IMAGES.corn },
+  { name: 'Fresh Dates', image: CDN_IMAGES.dates },
+];
 
   return (
     <div className="home">
